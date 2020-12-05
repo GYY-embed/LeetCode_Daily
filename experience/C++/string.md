@@ -33,3 +33,37 @@ substr函数的形式为s.substr(pos, n)
 若pos的值超过了string的大小，则substr函数会抛出一个out_of_range异常；
 
 若pos+n的值超过了string的大小，则substr会调整n的值，只拷贝到string的末尾。
+
+## 字符串排序
+
+默认的排序是按照字典序进行排序
+
+可以使用lambda表达式修改排序方法
+
+```cpp
+[capture list] (params list) mutable exception-> return type { function body }
+```
+
+各项具体含义如下:
+
+- capture list：捕获外部变量列表
+- params list：形参列表
+- mutable指示符：用来说用是否可以修改捕获的变量
+- exception：异常设定
+- return type：返回类型
+- function body：函数体
+
+此外，我们还可以省略其中的某些成分来声明“不完整”的Lambda表达式，常见的有以下几种：
+
+|序号 |格式|
+|:-----:|:----|
+1 |[capture list] (params list) -> return type {function body}
+2 |[capture list] (params list) {function body}
+3 |[capture list] {function body}
+
+示例：
+
+```cpp
+sort(str_vec.begin(), str_vec.end(), [](string& s1, string& s2){return s1 + s2 < s2 + s1;});
+```
+
